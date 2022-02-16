@@ -135,14 +135,14 @@ function mapProperties() {
     for (var i = 0; i < propertyArray.length; i++) {
         marker = new L.marker(propertyArray[i]['coords']).bindPopup('Hello').addTo(map);
         //map.addLayer(marker)
-    }
+    } propertyTable()
 }
 
 function clearProperties() {
     //console.log(map)
+    $('.fixed_header').remove()
 
     Object.keys(map['_layers']).forEach(key => {
-        console.log(key)
         if (key !== '26' && key !== '35') {
             console.log('yea')
             map['_layers'][key].remove()
@@ -150,6 +150,27 @@ function clearProperties() {
     })
 }
 
+function propertyTable() {
+    $tableOuter = $('<table class="fixed_header"></table>');
+    $tableOuter.html('<col style="width: 100px"><col>')
+    $tableHead = $('<thead></thead>');
+    $tableHeadRow = $('<tr></tr>')
+    Object.keys(propertyArray[0]).forEach(key => { $tableHeadRow.append(`<th>${key.toLocaleUpperCase()}</th>`) })
+    $tableHead.html($tableHeadRow)
+    $tbody = $('<tbody></tbody>')
+    for (var i = 0; i < propertyArray.length; i++) {
+        let $tableRow = $('<tr></tr>')
+        Object.keys(propertyArray[i]).forEach(key => { $tableRow.append(`<td>${propertyArray[i][key]}</td>`) })
+        $tbody.append($tableRow)
+    }
+    $tableOuter.append($tableHead)
+    $tableOuter.append($tbody)
+    $('.table-wrapper').append($tableOuter)
+}
+
+
+
+
+
 $('.clear').on('click', clearProperties)
 $('.populate').on('click', mapProperties)
-//mapProperties(propertyArray)

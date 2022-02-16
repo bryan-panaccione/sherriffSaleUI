@@ -1,7 +1,24 @@
 @charset "UTF-8";
 @import url("http://fonts.googleapis.com/css?family=Roboto:500,300");
 
+.table-wrapper{
+  overflow: auto;
+}
+.fixed_header {
+  overflow-x: scroll; 
+  overflow-y: scroll;
+}
 
+table {
+  table-layout: fixed;
+  height: 30px;
+  page-break-inside: avoid;
+}
+
+td, th{
+  width: 150px;
+  overflow-wrap: break-word;
+}
 
 
 /* Map*/
@@ -510,6 +527,7 @@ dl {
   margin: 0 0 2em 0;
 }
 /* Table */
+
 .table-wrapper {
   -webkit-overflow-scrolling: touch;
   overflow-x: auto;
@@ -528,6 +546,7 @@ table tbody tr:nth-child(2n + 1) {
 }
 table td {
   padding: 0.75em 0.75em;
+  
 }
 table th {
   color: #666f77;
