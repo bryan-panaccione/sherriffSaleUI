@@ -101,7 +101,7 @@ const propertyArray = [
 ]
 
 
-
+let shownResults = 0
 var map = L.map('map').setView([39.736235517093455, -75.62615770500472], 11)
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
@@ -132,6 +132,7 @@ var marker;
 function mapProperties() {
     //var popup2 = L.popup();
     clearProperties();
+    setResultNum(propertyArray.length)
     for (var i = 0; i < propertyArray.length; i++) {
         marker = new L.marker(propertyArray[i]['coords']).bindPopup('Hello').addTo(map);
         //map.addLayer(marker)
@@ -140,6 +141,7 @@ function mapProperties() {
 
 function clearProperties() {
     //console.log(map)
+    setResultNum(0)
     $('.fixed_header').remove()
 
     Object.keys(map['_layers']).forEach(key => {
@@ -168,8 +170,9 @@ function propertyTable() {
     $('.table-wrapper').append($tableOuter)
 }
 
-
-
+function setResultNum(num) {
+    $('#resultLen').text(`Results: ${num}`)
+}
 
 
 $('.clear').on('click', clearProperties)
